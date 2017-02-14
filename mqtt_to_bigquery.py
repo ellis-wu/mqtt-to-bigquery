@@ -45,7 +45,8 @@ def stream_data(project_id, dataset_id, table_name, row, suffix=None, num_retrie
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
-    client.subscribe("rpi-1")
+    topic = config_read().get('mqtt_broker', 'topic')
+    client.subscribe(topic)
 
 
 def on_message(client, userdata, msg):
